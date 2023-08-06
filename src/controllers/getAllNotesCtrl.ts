@@ -1,5 +1,5 @@
-import { getAllNotes } from '../repositories/getAllNotes.js';
 import { Request, Response } from 'express';
+import { getAllNotes } from '../repositories/getAllNotes.js';
 
 export async function handleGetAllNotes(req: Request, res: Response) {
   const notes = await getAllNotes();

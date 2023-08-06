@@ -4,11 +4,10 @@ import { handleGetAllNotes } from '../controllers/getAllNotesCtrl.js';
 import { getNoteByIdCtrl } from '../controllers/getNoteByIdCtrl.js';
 import { getStatsCtrl } from '../controllers/getStatsCtrl.js';
 import { removeNoteCtrl } from '../controllers/removeNoteCtrl.js';
+import { updateNoteCtrl } from '../controllers/updateNoteCtrl.js';
 import { ctrlWrapper } from '../middlewares/ctrlWrapper.js';
 import { validation } from '../middlewares/validation.js';
-import { updateNote } from '../services/updateNote.js';
 import { noteSchema } from '../validation/noteValidation.js';
-import { updateNoteCtrl } from '../controllers/updateNoteCtrl.js';
 
 const router = express.Router();
 

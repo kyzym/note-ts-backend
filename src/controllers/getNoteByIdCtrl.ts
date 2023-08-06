@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import NotFound from 'http-errors';
-import { getNoteById } from '../repositories/getNoteById';
+import { getNoteById } from '../repositories/getNoteById.js';
 
 export const getNoteByIdCtrl = async (req: Request, res: Response) => {
   const note = await getNoteById(req.params.id);
