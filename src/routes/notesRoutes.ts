@@ -1,21 +1,32 @@
 import express from 'express';
-import {
-  createNote,
-  getAllNotes,
-  removeNote,
-  updateNote,
-} from '../services/notesService.js';
+import { getAllNotes } from '../services/getAllNotes.js';
 import { noteSchema } from '../validation/noteValidation.js';
 import { validation } from '../middlewares/validation.js';
 import { ctrlWrapper } from '../middlewares/ctrlWrapper.js';
+import { getNoteById } from '../repositories/notesRepository.js';
+import { createNote } from '../services/createNote.js';
+import { removeNote } from '../services/removeNote.js';
+import { updateNote } from '../services/updateNote.js';
 
 const router = express.Router();
 
 router.get(
   '/notes',
-  ctrlWrapper(async (req, res) => {
+  ctrlWrapper(async (_, res) => {
     const notes = await getAllNotes();
     res.json(notes);
+  })
+);
+
+router.get(
+  '/notes/:id',
+  ctrlWrapper(async (req, res) => {
+    const note = await getNoteById(req.params.id);
+    if (note) {
+      res.json(note);
+    } else {
+      res.status(404).send('Note not found');
+    }
   })
 );
 
@@ -23,8 +34,8 @@ router.post(
   '/notes',
   validation(noteSchema),
   ctrlWrapper(async (req, res) => {
-    await createNote(req.body);
-    res.status(201).send();
+    const note = await createNote(req.body);
+    res.status(201).json(note);
   })
 );
 
