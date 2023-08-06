@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
-import { removeNote } from '../services/removeNote.js';
 import NotFound from 'http-errors';
+import { removeNote } from '../services/removeNote.js';
 
 export const removeNoteCtrl = async (req: Request, res: Response) => {
   const note = await removeNote(req.params.id);

@@ -1,8 +1,6 @@
-import { notes } from '../data/notesData.js';
 import { Note } from '../models/noteModels.js';
+import { NoteModel } from '../validation/noteValidation.js';
 
-export const addNote = (note: Note) => {
-  notes.unshift(note);
-
-  return note;
+export const addNote = async (note: Note): Promise<Note> => {
+  return await NoteModel.create(note);
 };

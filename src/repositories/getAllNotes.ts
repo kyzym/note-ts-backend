@@ -1,3 +1,5 @@
-import { notes } from '../data/notesData.js';
+import { NoteModel } from '../validation/noteValidation.js';
 
-export const getAllNotes = async () => notes;
+export const getAllNotes = async () => {
+  return await NoteModel.find().sort({ createdAt: -1 });
+};

@@ -1,8 +1,7 @@
 import { findDatesInContent, removeDatesFromContent, } from '../helpers/parseDatesFromContent.js';
-import { getNoteById } from '../repositories/getNoteById.js';
+import { findAndUpdateNote } from '../repositories/findAndUpdateNote.js';
 export const updateNote = async (id, updatedFields) => {
-    const note = await getNoteById(id);
-    if (note && updatedFields.content !== undefined) {
+    if (updatedFields.content !== undefined) {
         const dates = findDatesInContent(updatedFields.content);
         const content = removeDatesFromContent(updatedFields.content);
         const updatedNote = {
@@ -10,8 +9,7 @@ export const updateNote = async (id, updatedFields) => {
             dates,
             content,
         };
-        Object.assign(note, updatedNote);
-        return note;
+        return await findAndUpdateNote(id, updatedNote);
     }
     else {
         return null;

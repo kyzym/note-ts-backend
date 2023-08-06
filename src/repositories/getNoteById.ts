@@ -1,3 +1,5 @@
-import { notes } from '../data/notesData.js';
+import { NoteModel } from '../validation/noteValidation.js';
 
-export const getNoteById = (id: string) => notes.find((note) => note.id === id);
+export const getNoteById = async (id: string) => {
+  return await NoteModel.findById(id);
+};

@@ -1,10 +1,7 @@
-import { notes } from '../data/notesData.js';
+import { NoteModel } from '../validation/noteValidation.js';
 
-export const deleteNote = (id: string): boolean => {
-  const index = notes.findIndex((note) => note.id === id);
-  if (index !== -1) {
-    notes.splice(index, 1);
-    return true;
-  }
-  return false;
+export const deleteNote = async (id: string): Promise<boolean> => {
+  const result = await NoteModel.findByIdAndRemove(id);
+
+  return result !== null;
 };

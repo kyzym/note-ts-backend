@@ -5,19 +5,24 @@ import morgan from 'morgan';
 import { AddressInfo } from 'net';
 import dotenv from 'dotenv';
 import path from 'path';
-import url from 'url';
+import { fileURLToPath } from 'url';
 import router from './routes/notesRoutes.js';
+import { connectDb } from './config/connectDB.js';
 
-const __filename = url.fileURLToPath(import.meta.url);
+const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 dotenv.config({
   path: path.join(__dirname, 'config', '.env'),
 });
-
+console.log(path.join(__dirname, 'config', '.env'));
 const app = express();
 
-const { PORT = 3000 } = process.env;
+const { PORT = 4000 } = process.env;
+
+(async () => {
+  await connectDb();
+})();
 
 app.use(morgan('short'));
 

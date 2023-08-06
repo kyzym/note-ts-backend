@@ -6,7 +6,7 @@ export const updateNoteCtrl = async (req: Request, res: Response) => {
   const { id } = req.params;
 
   const updatedNote = await updateNote(id, req.body);
-  console.log(updatedNote);
+
   if (!updatedNote) {
     throw NotFound(`note with id:${id} not found`);
   }

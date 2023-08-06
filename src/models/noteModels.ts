@@ -1,7 +1,6 @@
 export interface Note {
-  id: string;
   name: string;
-  createdAt: string;
+  created?: string;
   content: string;
   dates: string[];
   category: string;

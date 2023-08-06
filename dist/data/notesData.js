@@ -1,6 +1,5 @@
 export const notes = [
     {
-        id: '1',
         name: 'Buy everything from the corner store',
         createdAt: 'January 15, 2023',
         content: "Need to buy milk, eggs, walls and roof from the corner store. Don't forget the cat food!",
@@ -9,7 +8,6 @@ export const notes = [
         isArchived: false,
     },
     {
-        id: '2',
         name: 'Hard is not always easy',
         createdAt: 'February 01, 2023',
         content: "Always remember, 'Hard is not always easy'. But that doesn't mean it's impossible!",
@@ -18,7 +16,6 @@ export const notes = [
         isArchived: false,
     },
     {
-        id: '3',
         name: 'Try to do more push-ups than Chuck Norris',
         createdAt: 'March 01, 2023',
         content: "Can I do more push-ups than Chuck Norris? Probably not. But it's worth a try!",
@@ -27,7 +24,6 @@ export const notes = [
         isArchived: false,
     },
     {
-        id: '4',
         name: "Don't forget to water the cat",
         createdAt: 'April 01, 2023',
         content: "The cat seems a bit hot. Don't forget to sprinkle some water on it to cool down!",
@@ -36,7 +32,6 @@ export const notes = [
         isArchived: false,
     },
     {
-        id: '5',
         name: 'Can squirrels really fly?',
         createdAt: 'May 01, 2023',
         content: 'I saw a squirrel jumping from one tree to another. It looked like it was flying!',
@@ -45,7 +40,6 @@ export const notes = [
         isArchived: false,
     },
     {
-        id: '6',
         name: 'Plan a trip to Tatooine',
         createdAt: 'June 01, 2023',
         content: 'I need to plan my next vacation. Maybe I should visit Tatooine from Star Wars!',
@@ -54,7 +48,6 @@ export const notes = [
         isArchived: false,
     },
     {
-        id: '7',
         name: 'Learn to make tables from pizza',
         createdAt: 'July 01, 2023',
         content: 'I love pizza! Maybe I can learn how to make tables out of it!',

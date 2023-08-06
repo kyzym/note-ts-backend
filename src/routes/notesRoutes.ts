@@ -7,7 +7,7 @@ import { removeNoteCtrl } from '../controllers/removeNoteCtrl.js';
 import { updateNoteCtrl } from '../controllers/updateNoteCtrl.js';
 import { ctrlWrapper } from '../middlewares/ctrlWrapper.js';
 import { validation } from '../middlewares/validation.js';
-import { noteSchema } from '../validation/noteValidation.js';
+import { noteJoiSchema } from '../validation/noteValidation.js';
 
 const router = express.Router();
 
@@ -17,10 +17,14 @@ router.get('/notes/stats', ctrlWrapper(getStatsCtrl));
 
 router.get('/notes/:id', ctrlWrapper(getNoteByIdCtrl));
 
-router.post('/notes', validation(noteSchema), ctrlWrapper(createNoteCtrl));
+router.post('/notes', validation(noteJoiSchema), ctrlWrapper(createNoteCtrl));
+
+router.patch(
+  '/notes/:id',
+  validation(noteJoiSchema),
+  ctrlWrapper(updateNoteCtrl)
+);
 
 router.delete('/notes/:id', ctrlWrapper(removeNoteCtrl));
-
-router.patch('/notes/:id', validation(noteSchema), ctrlWrapper(updateNoteCtrl));
 
 export default router;

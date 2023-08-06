@@ -3,15 +3,13 @@ import {
   removeDatesFromContent,
 } from '../helpers/parseDatesFromContent.js';
 import { Note, NoteInput } from '../models/noteModels.js';
-import { getNoteById } from '../repositories/getNoteById.js';
+import { findAndUpdateNote } from '../repositories/findAndUpdateNote.js';
 
 export const updateNote = async (
   id: string,
   updatedFields: Partial<NoteInput>
 ) => {
-  const note = await getNoteById(id);
-
-  if (note && updatedFields.content !== undefined) {
+  if (updatedFields.content !== undefined) {
     const dates = findDatesInContent(updatedFields.content);
     const content = removeDatesFromContent(updatedFields.content);
 
@@ -21,9 +19,7 @@ export const updateNote = async (
       content,
     };
 
-    Object.assign(note, updatedNote);
-
-    return note;
+    return await findAndUpdateNote(id, updatedNote);
   } else {
     return null;
   }
