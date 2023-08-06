@@ -51,8 +51,8 @@ router.patch(
   '/notes/:id',
   validation(noteSchema),
   ctrlWrapper(async (req, res) => {
-    await updateNote(req.params.id, req.body);
-    res.status(204).send();
+    const updatedNote = await updateNote(req.params.id, req.body);
+    res.status(200).json(updatedNote);
   })
 );
 
