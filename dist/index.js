@@ -32,5 +32,5 @@ app.use((err, _, res, _next) => {
 });
 const server = app.listen(PORT, () => {
     const address = server.address();
-    console.log(chalk.green.italic(`Server is running. Use this API at http://localhost:${address.port}`));
+    console.log(chalk.green.italic(`Server is running. Use port: ${address.port}`));
 });

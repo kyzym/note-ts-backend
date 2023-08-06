@@ -53,8 +53,6 @@ app.use(
 const server = app.listen(PORT, () => {
   const address = server.address() as AddressInfo;
   console.log(
-    chalk.green.italic(
-      `Server is running. Use this API at http://localhost:${address.port}`
-    )
+    chalk.green.italic(`Server is running. Use port: ${address.port}`)
   );
 });
