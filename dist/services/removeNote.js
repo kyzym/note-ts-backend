@@ -1,2 +1,2 @@
-import { deleteNote } from '../repositories/notesRepository.js';
+import { deleteNote } from '../repositories/deleteNote.js';
 export const removeNote = (id) => deleteNote(id);

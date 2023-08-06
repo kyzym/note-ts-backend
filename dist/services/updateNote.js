@@ -1,9 +1,10 @@
-import { getNoteById } from '../repositories/notesRepository.js';
-import { parseDatesFromContent } from '../helpers/parseDatesFromContent.js';
+import { findDatesInContent, removeDatesFromContent, } from '../helpers/parseDatesFromContent.js';
+import { getNoteById } from '../repositories/getNoteById.js';
 export const updateNote = async (id, updatedFields) => {
     const note = await getNoteById(id);
     if (note && updatedFields.content !== undefined) {
-        const { dates, content } = parseDatesFromContent(updatedFields.content);
+        const dates = findDatesInContent(updatedFields.content);
+        const content = removeDatesFromContent(updatedFields.content);
         const updatedNote = {
             ...updatedFields,
             dates,
@@ -11,5 +12,8 @@ export const updateNote = async (id, updatedFields) => {
         };
         Object.assign(note, updatedNote);
         return note;
+    }
+    else {
+        return null;
     }
 };
