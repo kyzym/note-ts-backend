@@ -1,48 +1,30 @@
 import express from 'express';
-import {
-  createNote,
-  getAllNotes,
-  removeNote,
-  updateNote,
-} from '../services/notesService.js';
-import { noteSchema } from '../validation/noteValidation.js';
-import { validation } from '../middlewares/validation.js';
+import { createNoteCtrl } from '../controllers/createNoteCtrl.js';
+import { handleGetAllNotes } from '../controllers/getAllNotesCtrl.js';
+import { getNoteByIdCtrl } from '../controllers/getNoteByIdCtrl.js';
+import { getStatsCtrl } from '../controllers/getStatsCtrl.js';
+import { removeNoteCtrl } from '../controllers/removeNoteCtrl.js';
+import { updateNoteCtrl } from '../controllers/updateNoteCtrl.js';
 import { ctrlWrapper } from '../middlewares/ctrlWrapper.js';
+import { validation } from '../middlewares/validation.js';
+import { noteJoiSchema } from '../validation/noteValidation.js';
 
 const router = express.Router();
 
-router.get(
-  '/notes',
-  ctrlWrapper(async (req, res) => {
-    const notes = await getAllNotes();
-    res.json(notes);
-  })
-);
+router.get('/notes', ctrlWrapper(handleGetAllNotes));
 
-router.post(
-  '/notes',
-  validation(noteSchema),
-  ctrlWrapper(async (req, res) => {
-    await createNote(req.body);
-    res.status(201).send();
-  })
-);
+router.get('/notes/stats', ctrlWrapper(getStatsCtrl));
 
-router.delete(
-  '/notes/:id',
-  ctrlWrapper(async (req, res) => {
-    await removeNote(req.params.id);
-    res.status(204).send();
-  })
-);
+router.get('/notes/:id', ctrlWrapper(getNoteByIdCtrl));
+
+router.post('/notes', validation(noteJoiSchema), ctrlWrapper(createNoteCtrl));
 
 router.patch(
   '/notes/:id',
-  validation(noteSchema),
-  ctrlWrapper(async (req, res) => {
-    await updateNote(req.params.id, req.body);
-    res.status(204).send();
-  })
+  validation(noteJoiSchema),
+  ctrlWrapper(updateNoteCtrl)
 );
+
+router.delete('/notes/:id', ctrlWrapper(removeNoteCtrl));
 
 export default router;
